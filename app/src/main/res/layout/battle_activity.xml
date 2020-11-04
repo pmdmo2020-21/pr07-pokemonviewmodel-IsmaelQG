@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.battle.BattleActivity">
+
+    <LinearLayout
+        android:id="@+id/llPokemon1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/green_50"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/cardPadding"
+        app:layout_constraintBottom_toTopOf="@+id/llPokemon2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1">
+
+        <ImageView
+            android:id="@+id/imgPokemon1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:src="@drawable/gyarados" />
+
+        <TextView
+            android:id="@+id/lblPokemon1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/gyarados"
+            android:textSize="@dimen/cardPadding" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llPokemon2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/purple_50"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/cardPadding"
+        app:layout_constraintBottom_toTopOf="@+id/lblTextFight"
+        app:layout_constraintTop_toBottomOf="@+id/llPokemon1"
+        app:layout_constraintVertical_weight="1">
+
+        <TextView
+            android:id="@+id/lblPokemon2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/bulbasur"
+            android:textSize="@dimen/cardPadding" />
+
+        <ImageView
+            android:id="@+id/imgPokemon2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:src="@drawable/bulbasur" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="@dimen/versusSide"
+        android:layout_height="@dimen/versusSide"
+        android:src="@drawable/versus"
+        app:layout_constraintBottom_toBottomOf="@id/llPokemon2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/llPokemon1" />
+
+    <TextView
+        android:id="@+id/lblTextFight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/cardPadding"
+        android:text="@string/lblTextFight"
+        android:textColor="@color/black"
+        android:textSize="@dimen/lblTextFight"
+        app:layout_constraintBottom_toTopOf="@+id/btnStart"
+        app:layout_constraintTop_toBottomOf="@+id/llPokemon2"/>
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnStart"
+        android:layout_marginBottom="@dimen/cardPadding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblTextFight"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

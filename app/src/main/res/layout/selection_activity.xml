@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.selection.SelectionActivity">
+
+    <LinearLayout
+        android:id="@+id/llSelectionActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/cardPadding"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/rdgLeft"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingRight="@dimen/paddingBetweenll"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgBulbasur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bulbasur"
+                android:adjustViewBounds="true"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rdbBulbasur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bulbasur"
+                android:textSize="@dimen/lblTextFight"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:id="@+id/imgCubone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cubone"
+                android:adjustViewBounds="true"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rdbCubone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cubone"
+                android:textSize="@dimen/lblTextFight"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:id="@+id/imgFeebas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/feebas"
+                android:adjustViewBounds="true"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rdbFeebas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feebas"
+                android:textSize="@dimen/lblTextFight"
+                android:layout_gravity="center"/>
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rdgRight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/paddingBetweenll"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgGiratina"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/giratina"
+                android:adjustViewBounds="true"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rdbGiratina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/giratina"
+                android:textSize="@dimen/lblTextFight"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:id="@+id/imgGyarados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/gyarados"
+                android:adjustViewBounds="true"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rdbGyarados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gyarados"
+                android:textSize="@dimen/lblTextFight"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:id="@+id/imgPikachu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pikachu"
+                android:adjustViewBounds="true"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rdbPikachu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pikachu"
+                android:textSize="@dimen/lblTextFight"
+                android:layout_gravity="center"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

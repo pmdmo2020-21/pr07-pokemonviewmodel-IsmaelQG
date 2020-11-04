@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.winner.WinnerActivity">
+
+    <TextView
+        android:id="@+id/lblWinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/cardPadding"
+        android:gravity="center"
+        android:text="@string/lblWinner"
+        android:textSize="@dimen/cardPadding"
+        app:layout_constraintBottom_toTopOf="@+id/imgPokemonWinner"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        app:layout_constraintVertical_weight="1"
+        tools:layout_editor_absoluteX="30dp" />
+
+    <ImageView
+        android:id="@+id/imgPokemonWinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/cardPadding"
+        android:adjustViewBounds="true"
+        android:src="@drawable/pikachu"
+        app:layout_constraintBottom_toTopOf="@+id/lblWinnerName"
+        app:layout_constraintTop_toBottomOf="@+id/lblWinner"
+        tools:layout_editor_absoluteX="30dp" />
+
+    <TextView
+        android:id="@+id/lblWinnerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/cardPadding"
+        android:gravity="center"
+        android:textSize="@dimen/lblWinnerName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPokemonWinner"
+        tools:layout_editor_absoluteX="30dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
