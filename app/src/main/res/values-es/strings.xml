@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simulador de batalla Pokémon</string>
+    <string name="bulbasur">Bulbasur</string>
+    <string name="giratina">Giratina</string>
+    <string name="cubone">Cubone</string>
+    <string name="gyarados">Gyarados</string>
+    <string name="feebas">Feebas</string>
+    <string name="pikachu">Pikachu</string>
+    <string name="lblTextFight">Selecciona a los contendientes y comienza la batalla para ver quién saldrá victorioso.</string>
+    <string name="btnStart">Comenzar la batalla</string>
+    <string name="lblWinner">Y el ganador es...</string>
+</resources>

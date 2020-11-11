@@ -7,8 +7,8 @@ import java.util.concurrent.ThreadLocalRandom
 // TODO: Haz que Database implemente DataSource
 object Database : DataSource{
     override fun getRandomPokemon(): Pokemon {
-        var pokemonList = getAllPokemons()
-        var random = ThreadLocalRandom.current().nextLong(0, 6)
+        val pokemonList = getAllPokemons()
+        val random = ThreadLocalRandom.current().nextLong(0, 6)
         return pokemonList[random.toInt()]
     }
 
@@ -24,7 +24,7 @@ object Database : DataSource{
     }
 
     override fun getPokemonById(id: Long): Pokemon? {
-        var pokemonList = getAllPokemons()
+        val pokemonList = getAllPokemons()
         var pokemon : Pokemon? = null
         pokemonList.forEach{
             if (it.id == id){

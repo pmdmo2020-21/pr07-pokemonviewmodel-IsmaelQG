@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import es.iessaladillo.pedrojoya.intents.data.local.Database
 import es.iessaladillo.pedrojoya.intents.data.local.model.Pokemon
@@ -18,10 +19,7 @@ private const val RC_WINNER_ACTIVITY: Int = 2
 class BattleActivity : AppCompatActivity() {
 
     private lateinit var binding: BattleActivityBinding
-    private lateinit var pokemon1 : Pokemon
-    private lateinit var pokemon2 : Pokemon
-    private var id : Long = 0
-    private var pokemon : Int = 0
+    private val viewModel: BattleActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,25 +30,25 @@ class BattleActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        binding.llPokemon1.setOnClickListener {navigateToSelectionActivityPokemon(pokemon1.id, 1)}
-        binding.llPokemon2.setOnClickListener {navigateToSelectionActivityPokemon(pokemon2.id, 2)}
+        binding.llPokemon1.setOnClickListener {navigateToSelectionActivityPokemon(viewModel.pokemon1.id, 1)}
+        binding.llPokemon2.setOnClickListener {navigateToSelectionActivityPokemon(viewModel.pokemon2.id, 2)}
     }
 
     private fun setupViews() {
         binding.btnStart.setOnClickListener{}
         setPokemon1(Database.getRandomPokemon())
         setPokemon2(Database.getRandomPokemon())
-        binding.btnStart.setOnClickListener { navigateToWinnerActivityPokemon(pokemon1.id, pokemon2.id) }
+        binding.btnStart.setOnClickListener { navigateToWinnerActivityPokemon(viewModel.pokemon1.id, viewModel.pokemon2.id) }
     }
 
     private fun setPokemon1(pokemon: Pokemon) {
-        pokemon1 = pokemon
+        viewModel.pokemon1 = pokemon
         binding.imgPokemon1.setImageResource(pokemon.image)
         binding.lblPokemon1.text = pokemon.name
     }
 
     private fun setPokemon2(pokemon: Pokemon) {
-        pokemon2 = pokemon
+        viewModel.pokemon2 = pokemon
         binding.imgPokemon2.setImageResource(pokemon.image)
         binding.lblPokemon2.text = pokemon.name
     }
@@ -69,11 +67,11 @@ class BattleActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, intent)
         if (resultCode == RESULT_OK && requestCode == RC_SELECTION_ACTIVITY && intent != null) {
             extractResult(intent)
-            if(pokemon == 1){
-                setPokemon1(Database.getPokemonById(id)!!)
+            if(viewModel.pokemon == 1){
+                setPokemon1(Database.getPokemonById(viewModel.id)!!)
             }
-            if(pokemon == 2){
-                setPokemon2(Database.getPokemonById(id)!!)
+            if(viewModel.pokemon == 2){
+                setPokemon2(Database.getPokemonById(viewModel.id)!!)
             }
         }
     }
@@ -83,8 +81,8 @@ class BattleActivity : AppCompatActivity() {
             !intent.hasExtra(SelectionActivity.WHAT_POKEMON)) {
             throw RuntimeException()
         }
-        id = intent.getLongExtra(SelectionActivity.EXTRA_POKEMON, 0)
-        pokemon = intent.getIntExtra(SelectionActivity.WHAT_POKEMON, 0)
+        viewModel.id = intent.getLongExtra(SelectionActivity.EXTRA_POKEMON, 0)
+        viewModel.pokemon = intent.getIntExtra(SelectionActivity.WHAT_POKEMON, 0)
     }
 
 }
