@@ -3,13 +3,14 @@ package es.iessaladillo.pedrojoya.intents.ui.winner
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import es.iessaladillo.pedrojoya.intents.data.local.Database
 import es.iessaladillo.pedrojoya.intents.data.local.model.Pokemon
-import es.iessaladillo.pedrojoya.intents.databinding.SelectionActivityBinding
 import es.iessaladillo.pedrojoya.intents.databinding.WinnerActivityBinding
-import es.iessaladillo.pedrojoya.intents.ui.selection.SelectionActivity
+
+private const val STATE_POKEMON_1 = "STATE_POKEMON_1"
+private const val STATE_POKEMON_2 = "STATE_POKEMON_2"
 
 class WinnerActivity : AppCompatActivity() {
 
@@ -18,17 +19,14 @@ class WinnerActivity : AppCompatActivity() {
         const val EXTRA_POKEMON1 = "EXTRA_POKEMON1"
         const val EXTRA_POKEMON2 = "EXTRA_POKEMON2"
 
-        fun newIntent(context: Context, id1 : Long, id2 : Long) =
+        fun newIntent(context: Context, pokemon1 : Pokemon, pokemon2 : Pokemon) =
             Intent(context, WinnerActivity::class.java)
-                .putExtras(bundleOf(EXTRA_POKEMON1 to id1, EXTRA_POKEMON2 to id2))
+                .putExtras(bundleOf(EXTRA_POKEMON1 to pokemon1, EXTRA_POKEMON2 to pokemon2))
 
     }
 
-    private var id2 : Long = 0
-    private var id1 : Long = 0
-    private lateinit var pokemon1 : Pokemon
-    private lateinit var pokemon2 : Pokemon
     private lateinit var binding: WinnerActivityBinding
+    private val viewModel: WinnerActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +34,10 @@ class WinnerActivity : AppCompatActivity() {
         setContentView(binding.root)
         getIntentData()
         setupViews()
+        if (savedInstanceState != null){
+            viewModel.pokemon1 = (savedInstanceState.getParcelable(STATE_POKEMON_1) as Pokemon?)!!
+            viewModel.pokemon2 = (savedInstanceState.getParcelable(STATE_POKEMON_2) as Pokemon?)!!
+        }
     }
 
     private fun setupViews() {
@@ -43,17 +45,17 @@ class WinnerActivity : AppCompatActivity() {
     }
 
     private fun winner() {
-        if (pokemon1.power > pokemon2.power){
-            binding.imgPokemonWinner.setImageResource(pokemon1.image)
-            binding.lblWinnerName.text = pokemon1.name
+        if (viewModel.pokemon1.power > viewModel.pokemon2.power){
+            binding.imgPokemonWinner.setImageResource(viewModel.pokemon1.image)
+            binding.lblWinnerName.setText(viewModel.pokemon1.name)
         }
-        else if (pokemon1.power < pokemon2.power){
-            binding.imgPokemonWinner.setImageResource(pokemon2.image)
-            binding.lblWinnerName.text = pokemon2.name
+        else if (viewModel.pokemon1.power < viewModel.pokemon2.power){
+            binding.imgPokemonWinner.setImageResource(viewModel.pokemon2.image)
+            binding.lblWinnerName.setText(viewModel.pokemon2.name)
         }
         else{
-            binding.imgPokemonWinner.setImageResource(pokemon1.image)
-            binding.lblWinnerName.text = pokemon1.name
+            binding.imgPokemonWinner.setImageResource(viewModel.pokemon1.image)
+            binding.lblWinnerName.setText(viewModel.pokemon1.name)
         }
     }
 
@@ -61,10 +63,14 @@ class WinnerActivity : AppCompatActivity() {
         if (intent == null || !intent.hasExtra(WinnerActivity.EXTRA_POKEMON1) || !intent.hasExtra(WinnerActivity.EXTRA_POKEMON2)) {
             throw RuntimeException()
         }
-        id1 = intent.getLongExtra(WinnerActivity.EXTRA_POKEMON1, 0)
-        id2 = intent.getLongExtra(WinnerActivity.EXTRA_POKEMON2, 0)
-        pokemon1 = Database.getPokemonById(id1)!!
-        pokemon2 = Database.getPokemonById(id2)!!
+        viewModel.pokemon1 = intent.getParcelableExtra(WinnerActivity.EXTRA_POKEMON1)!!
+        viewModel.pokemon2 = intent.getParcelableExtra(WinnerActivity.EXTRA_POKEMON2)!!
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(STATE_POKEMON_1, viewModel.pokemon1)
+        outState.putParcelable(STATE_POKEMON_2, viewModel.pokemon2)
     }
 
 }

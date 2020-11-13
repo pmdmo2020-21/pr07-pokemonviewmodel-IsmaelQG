@@ -1,12 +1,11 @@
-package es.iessaladillo.pedrojoya.intents.ui.battle
+package es.iessaladillo.pedrojoya.intents.ui.winner
 
 import androidx.lifecycle.ViewModel
 import es.iessaladillo.pedrojoya.intents.data.local.model.Pokemon
 
-class BattleActivityViewModel : ViewModel() {
+class WinnerActivityViewModel: ViewModel(){
 
     lateinit var pokemon1 : Pokemon
     lateinit var pokemon2 : Pokemon
-    var whatPokemon : Int = 0
 
 }

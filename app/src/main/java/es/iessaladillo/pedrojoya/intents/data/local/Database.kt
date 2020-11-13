@@ -14,12 +14,12 @@ object Database : DataSource{
 
     override fun getAllPokemons(): List<Pokemon> {
         return listOf(
-            Pokemon(10, R.drawable.bulbasur, 1, "Bulbasur"),
-            Pokemon(100, R.drawable.giratina, 2, "Giratina"),
-            Pokemon(50, R.drawable.cubone, 3, "Cubone"),
-            Pokemon(90, R.drawable.gyarados, 4, "Gyarados"),
-            Pokemon(1, R.drawable.feebas, 5, "Feebas"),
-            Pokemon(30, R.drawable.pikachu, 6, "Pikachu"),
+            Pokemon(10, R.drawable.bulbasur, 1, R.string.bulbasur),
+            Pokemon(100, R.drawable.giratina, 2, R.string.giratina),
+            Pokemon(50, R.drawable.cubone, 3, R.string.cubone),
+            Pokemon(90, R.drawable.gyarados, 4, R.string.gyarados),
+            Pokemon(1, R.drawable.feebas, 5, R.string.feebas),
+            Pokemon(30, R.drawable.pikachu, 6, R.string.pikachu),
         )
     }
 
